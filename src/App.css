@@ -1,0 +1,82 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  min-height: 100vh;
+}
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-bottom: 15px;
+}
+
+.App-content {
+  max-width: 700px;
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 3px 3px -2px,
+    rgb(0 0 0 / 14%) 0px 3px 4px 0px, rgb(0 0 0 / 12%) 0px 1px 8px 0px;
+  padding: 20px;
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.form-group-submitSale {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150.391px;
+}
+
+.iconSale {
+  background-color: black;
+  cursor: pointer;
+  padding: 5.59px;
+  border-radius: 5px;
+  margin: 0 0 0 5px;
+}
+.iconSale:hover {
+  filter: brightness(2.5);
+}
+.iconSale:active {
+  filter: brightness(3);
+  background-color: rgb(34, 34, 34);
+}
+
+h1 {
+  font-family: "Merienda", cursive;
+  color: darkblue;
+  font-size: 50px;
+}
+
+h6 {
+  font-family: "Merienda", cursive;
+  color: black;
+  margin: 0;
+  font-size: 20px;
+}
+
+.App-form-sale {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.count-sale-prods {
+  cursor: pointer;
+  position: relative;
+  left: -12px;
+  top: 11px;
+  font-size: 8px;
+  padding: 0 3px 0 3px;
+  border-radius: 100%;
+  background-color: darkblue;
+  font-family: "Merienda", cursive;
+}
