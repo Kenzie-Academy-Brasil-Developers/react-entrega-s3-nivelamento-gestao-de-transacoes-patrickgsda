@@ -4,7 +4,7 @@ import Button from "./components/Button";
 import Input from "./components/Input";
 import Enters from "./components/Enters";
 import Exits from "./components/Exits";
-import iconSale from "./images/salew.svg";
+import EntersExits from "./components/EntersExits";
 
 function App() {
   const [transactions, setTransactions] = useState([
@@ -14,15 +14,13 @@ function App() {
   ]);
 
   const [sale, setSale] = useState([]);
-  const [saleOk, setSaleOk] = useState(false);
+  const [isEnter, setIsEnter] = useState(false);
   const [saleTotal, setSaleTotal] = useState(0);
   const [discTotal, setDiscTotal] = useState(0);
 
-  const [prodCode, setProdrCode] = useState("");
   const [prodName, setProdName] = useState("");
-  const [prodDescrip, setProdDescrip] = useState("");
   const [prodPrice, setProdPrice] = useState("");
-  const [prodDiscount, setProdDiscount] = useState("");
+  const [prodQuant, setProdQuant] = useState("");
 
   function totalSale(product) {
     const reducer = (cartTotal, currentValue) => cartTotal + currentValue;
@@ -34,14 +32,7 @@ function App() {
     setDiscTotal(sale.map((sale) => sale.discount).reduce(reducer, product));
   }
 
-  function remSale(id) {
-    const arrayProductDeleted = sale.filter((product) => product.code !== id);
-    const removedItem = sale.find((sale) => sale.code === id);
-    setSale([...arrayProductDeleted]);
-
-    totalSale(-removedItem.price);
-    totalDiscSale(-removedItem.discount);
-  }
+  const reducer = (Total, currentValue) => Total + currentValue;
 
   function addProd(e) {
     e.preventDefault();
@@ -50,28 +41,16 @@ function App() {
       {
         name: prodName,
         price: parseFloat(prodPrice),
-        quantity: parseInt(prodDiscount),
+        quantity: parseInt(prodQuant),
       },
     ]);
   }
 
-  function remProds(id) {
-    const arrayProductDeleted = transactions.filter(
-      (product) => product.code !== id
-    );
-    setTransactions([...arrayProductDeleted]);
-
-    const productInSale = sale.find((sale) => sale.code === id);
-    if (productInSale) {
-      remSale(id);
-    }
-  }
-
-  function hiddenSale() {
-    if (saleOk === false) {
-      setSaleOk(true);
-    } else if (saleOk === true) {
-      setSaleOk(false);
+  function hidden() {
+    if (isEnter === false) {
+      setIsEnter(true);
+    } else if (isEnter === true) {
+      setIsEnter(false);
     }
   }
 
@@ -80,71 +59,143 @@ function App() {
       <div className="App-content">
         <h1>Controle de Transações</h1>
         <div className="App-form-sale">
-          <form className="App-header" onSubmit={addProd}>
-            <h6>Adicionar novos produtos</h6>
-            <Input
-              required={true}
-              value={prodCode}
-              type="number"
-              onChange={(e) => setProdrCode(e.target.value)}
-              placeholder="Código"
-            />
-            <Input
-              required={true}
-              value={prodName}
-              onChange={(e) => setProdName(e.target.value)}
-              placeholder="Nome"
-            />
-            <Input
-              required={true}
-              value={prodDescrip}
-              onChange={(e) => setProdDescrip(e.target.value)}
-              placeholder="Descrição"
-            />
-            <Input
-              required={true}
-              value={prodPrice}
-              type="number"
-              onChange={(e) => setProdPrice(e.target.value)}
-              placeholder="Preço"
-              min="0"
-            />
-            <Input
-              required={true}
-              value={prodDiscount}
-              type="number"
-              onChange={(e) => setProdDiscount(e.target.value)}
-              placeholder="Desconto"
-              min="0"
-            />
-            <div className="form-group-submitSale">
-              <Button type="submit">Adicionar</Button>
-              {sale.length > 0 && (
-                <>
-                  <img
-                    onClick={() => hiddenSale()}
-                    className="iconSale"
-                    src={iconSale}
-                    alt="Sale"
-                  />
-                  <span
-                    onClick={() => hiddenSale()}
-                    className="count-sale-prods"
-                  >
-                    {sale.length}
-                  </span>
-                </>
-              )}
-            </div>
-          </form>
+          {isEnter === true ? (
+            <form className="App-header" onSubmit={addProd}>
+              <h6>Adicionar entradas</h6>
+              <Input
+                required={true}
+                value={prodName}
+                onChange={(e) => setProdName(e.target.value)}
+                placeholder="Nome"
+              />
+              <Input
+                required={true}
+                value={prodPrice}
+                type="number"
+                onChange={(e) => setProdPrice(e.target.value)}
+                placeholder="Preço"
+                min="0"
+              />
+              <Input
+                required={true}
+                value={prodQuant}
+                type="number"
+                onChange={(e) => setProdQuant(e.target.value)}
+                placeholder="Quantidade"
+                min="1"
+              />
+              <div className="form-group-submitSale">
+                <Button type="submit">Adicionar</Button>
+                {isEnter === true ? (
+                  <Button type="button" onClick={() => hidden()}>
+                    Saídas
+                  </Button>
+                ) : (
+                  <Button type="button" onClick={() => hidden()}>
+                    Entradas
+                  </Button>
+                )}
+              </div>
+            </form>
+          ) : (
+            <form className="App-header" onSubmit={addProd}>
+              <h6>Adicionar saidas</h6>
+              <Input
+                required={true}
+                value={prodName}
+                onChange={(e) => setProdName(e.target.value)}
+                placeholder="Nome"
+              />
+              <Input
+                required={true}
+                value={prodPrice}
+                type="number"
+                onChange={(e) => setProdPrice(e.target.value)}
+                placeholder="Preço"
+                min="0"
+              />
+              <Input
+                required={true}
+                value={prodQuant}
+                type="number"
+                onChange={(e) => setProdQuant(e.target.value)}
+                placeholder="Quantidade"
+                max="-1"
+              />
+              <div className="form-group-submitSale">
+                <Button type="submit">Adicionar</Button>
+                {isEnter === true ? (
+                  <Button type="button" onClick={() => hidden()}>
+                    Saídas
+                  </Button>
+                ) : (
+                  <Button type="button" onClick={() => hidden()}>
+                    Entradas
+                  </Button>
+                )}
+              </div>
+            </form>
+          )}
         </div>
         {transactions.length > 0 && (
-          <div>
-            <h6>Produtos</h6>
-            <Enters transactions={transactions} />
-            <Exits transactions={transactions} />
+          <div className="group-products">
+            {isEnter === true ? (
+              <div>
+                <Enters transactions={transactions} />
+                <p>
+                  Quantidade total de frutas:{" "}
+                  {transactions
+                    .map((transaction) => {
+                      if (transaction.quantity > 0) {
+                        return transaction.quantity;
+                      }
+                      return 0;
+                    })
+                    .reduce(reducer, 0)}
+                </p>
+                <p>
+                  Valor total: R$
+                  {transactions
+                    .map((transaction) => {
+                      if (transaction.quantity > 0) {
+                        return transaction.price;
+                      }
+                      return 0;
+                    })
+                    .reduce(reducer, 0)}
+                </p>
+              </div>
+            ) : (
+              <div>
+                <Exits transactions={transactions} />
+                <p>
+                  Quantidade total de frutas:{" "}
+                  {transactions
+                    .map((transaction) => {
+                      if (transaction.quantity < 0) {
+                        return transaction.quantity * -1;
+                      }
+                      return 0;
+                    })
+                    .reduce(reducer, 0)}
+                </p>
+                <p>
+                  Valor total: R$
+                  {transactions
+                    .map((transaction) => {
+                      if (transaction.quantity < 0) {
+                        return transaction.price;
+                      }
+                      return 0;
+                    })
+                    .reduce(reducer, 0)}
+                </p>
+              </div>
+            )}
           </div>
         )}
+        <h6>Todas as Movimentações</h6>
+        <EntersExits transactions={transactions} />
       </div>
     </div>
   );

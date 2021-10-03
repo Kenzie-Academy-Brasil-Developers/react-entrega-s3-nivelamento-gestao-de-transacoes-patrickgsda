@@ -28,11 +28,21 @@
   margin-bottom: 35px;
 }
 
+.group-forms {
+  display: flex;
+  justify-content: center;
+}
+
+.group-products {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .form-group-submitSale {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150.391px;
 }
 
 .iconSale {
@@ -52,7 +62,7 @@
 
 h1 {
   font-family: "Merienda", cursive;
-  color: darkblue;
+  color: rgb(0, 77, 32);
   font-size: 50px;
 }
 

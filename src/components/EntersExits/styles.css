@@ -1,4 +1,4 @@
-.form-info-group-enters {
+.form-info-group-enters-exits {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -13,7 +13,7 @@
   flex-direction: column;
   box-sizing: border-box;
   border: 1px solid #ccc;
-  width: 200px;
+  width: 223.3px;
   color: rgba(0, 0, 0, 0.87);
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 20%) 0px 3px 3px -2px,
