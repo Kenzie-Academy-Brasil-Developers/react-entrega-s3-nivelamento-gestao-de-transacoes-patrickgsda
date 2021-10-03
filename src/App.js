@@ -13,24 +13,11 @@ function App() {
     { name: "laranja", quantity: 50, price: 6 },
   ]);
 
-  const [sale, setSale] = useState([]);
   const [isEnter, setIsEnter] = useState(false);
-  const [saleTotal, setSaleTotal] = useState(0);
-  const [discTotal, setDiscTotal] = useState(0);
 
   const [prodName, setProdName] = useState("");
   const [prodPrice, setProdPrice] = useState("");
   const [prodQuant, setProdQuant] = useState("");
-
-  function totalSale(product) {
-    const reducer = (cartTotal, currentValue) => cartTotal + currentValue;
-    setSaleTotal(sale.map((sale) => sale.price).reduce(reducer, product));
-  }
-
-  function totalDiscSale(product) {
-    const reducer = (cartTotal, currentValue) => cartTotal + currentValue;
-    setDiscTotal(sale.map((sale) => sale.discount).reduce(reducer, product));
-  }
 
   const reducer = (Total, currentValue) => Total + currentValue;
 
