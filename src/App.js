@@ -19,7 +19,7 @@ function App() {
   const [prodPrice, setProdPrice] = useState("");
   const [prodQuant, setProdQuant] = useState("");
 
-  const reducer = (Total, currentValue) => Total + currentValue;
+  const reducer = (total, currentValue) => total + currentValue;
 
   function addProd(e) {
     e.preventDefault();
@@ -145,7 +145,7 @@ function App() {
                   {transactions
                     .map((transaction) => {
                       if (transaction.quantity > 0) {
-                        return transaction.price;
+                        return transaction.price * transaction.quantity;
                       }
                       return 0;
                     })
@@ -171,7 +171,7 @@ function App() {
                   {transactions
                     .map((transaction) => {
                       if (transaction.quantity < 0) {
-                        return transaction.price;
+                        return transaction.price * transaction.quantity * -1;
                       }
                       return 0;
                     })
