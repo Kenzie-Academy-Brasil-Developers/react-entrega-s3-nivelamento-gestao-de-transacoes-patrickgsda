@@ -1,14 +1,14 @@
 import React from "react";
 import "./styles.css";
 
-export default function Card({ transactions }) {
+export default function Enters({ transactions }) {
   return (
     <>
       <h6>Entradas</h6>
       <div className="form-info-group-enters">
         {transactions.map((transaction, index) => {
           return (
-            <div>
+            <div key={index}>
               {transaction.quantity > 0 && (
                 <div key={index} className="card">
                   <p>Nome: {transaction.name}</p>

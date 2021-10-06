@@ -27,9 +27,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.pOld {
-  font-size: 12px;
-}
 
 .group-buttons {
   display: flex;

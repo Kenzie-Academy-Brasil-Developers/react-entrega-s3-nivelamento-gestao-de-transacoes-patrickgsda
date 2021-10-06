@@ -41,23 +41,10 @@
 
 .form-group-submitSale {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-}
-
-.iconSale {
-  background-color: black;
-  cursor: pointer;
-  padding: 5.59px;
-  border-radius: 5px;
-  margin: 0 0 0 5px;
-}
-.iconSale:hover {
-  filter: brightness(2.5);
-}
-.iconSale:active {
-  filter: brightness(3);
-  background-color: rgb(34, 34, 34);
+  align-content: center;
+  flex-wrap: wrap;
 }
 
 h1 {

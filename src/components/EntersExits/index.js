@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-export default function Card({ transactions }) {
+export default function EntersExits({ transactions }) {
   return (
     <div className="form-info-group-enters-exits">
       {transactions.map((transaction, index) => {

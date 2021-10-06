@@ -46,83 +46,42 @@ function App() {
       <div className="App-content">
         <h1>Controle de Transações</h1>
         <div className="App-form-sale">
-          {isEnter === true ? (
-            <form className="App-header" onSubmit={addProd}>
-              <h6>Adicionar entradas</h6>
-              <Input
-                required={true}
-                value={prodName}
-                onChange={(e) => setProdName(e.target.value)}
-                placeholder="Nome"
-              />
-              <Input
-                required={true}
-                value={prodPrice}
-                type="number"
-                onChange={(e) => setProdPrice(e.target.value)}
-                placeholder="Preço"
-                min="0"
-              />
-              <Input
-                required={true}
-                value={prodQuant}
-                type="number"
-                onChange={(e) => setProdQuant(e.target.value)}
-                placeholder="Quantidade"
-                min="1"
-              />
-              <div className="form-group-submitSale">
-                <Button type="submit">Adicionar</Button>
-                {isEnter === true ? (
-                  <Button type="button" onClick={() => hidden()}>
-                    Saídas
-                  </Button>
-                ) : (
-                  <Button type="button" onClick={() => hidden()}>
-                    Entradas
-                  </Button>
-                )}
-              </div>
-            </form>
-          ) : (
-            <form className="App-header" onSubmit={addProd}>
-              <h6>Adicionar saidas</h6>
-              <Input
-                required={true}
-                value={prodName}
-                onChange={(e) => setProdName(e.target.value)}
-                placeholder="Nome"
-              />
-              <Input
-                required={true}
-                value={prodPrice}
-                type="number"
-                onChange={(e) => setProdPrice(e.target.value)}
-                placeholder="Preço"
-                min="0"
-              />
-              <Input
-                required={true}
-                value={prodQuant}
-                type="number"
-                onChange={(e) => setProdQuant(e.target.value)}
-                placeholder="Quantidade"
-                max="-1"
-              />
-              <div className="form-group-submitSale">
-                <Button type="submit">Adicionar</Button>
-                {isEnter === true ? (
-                  <Button type="button" onClick={() => hidden()}>
-                    Saídas
-                  </Button>
-                ) : (
-                  <Button type="button" onClick={() => hidden()}>
-                    Entradas
-                  </Button>
-                )}
-              </div>
-            </form>
-          )}
+          <form className="App-header" onSubmit={addProd}>
+            <h6>Adicionar transação</h6>
+            <Input
+              required={true}
+              value={prodName}
+              onChange={(e) => setProdName(e.target.value)}
+              placeholder="Nome"
+            />
+            <Input
+              required={true}
+              value={prodPrice}
+              type="number"
+              onChange={(e) => setProdPrice(e.target.value)}
+              placeholder="Preço"
+              min="0"
+            />
+            <Input
+              required={true}
+              value={prodQuant}
+              type="number"
+              onChange={(e) => setProdQuant(e.target.value)}
+              placeholder="Quantidade"
+            />
+            <div className="form-group-submitSale">
+              <Button type="submit">Adicionar</Button>
+              {isEnter === true ? (
+                <Button type="button" onClick={() => hidden()}>
+                  Mostrar Saídas
+                </Button>
+              ) : (
+                <Button type="button" onClick={() => hidden()}>
+                  Mostrar Entradas
+                </Button>
+              )}
+            </div>
+          </form>
         </div>
         {transactions.length > 0 && (
           <div className="group-products">
